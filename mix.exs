@@ -22,7 +22,7 @@ defmodule SevenStoriesClub.Mixfile do
     [mod: {SevenStoriesClub.Application, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :gettext,
                     :phoenix_ecto, :postgrex],
-     extra_applications: [:logger, :runtime_tools]]
+     extra_applications: [:logger, :runtime_tools, :coherence]]
   end
 
   # Specifies which paths to compile per environment.
@@ -45,6 +45,7 @@ defmodule SevenStoriesClub.Mixfile do
       {:phoenix_slime, "~> 0.9.0"},
       {:wallaby, "~> 0.19.2", only: :test},
       {:ex_machina, "~> 2.1", only: :test},
+      {:coherence, "~> 0.5"}
    ]
   end
 

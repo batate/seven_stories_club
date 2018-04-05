@@ -1,6 +1,8 @@
 defmodule SevenStoriesClub.Account do
   defstruct [:id, :email, :username, :password]
   alias __MODULE__
+  alias SevenStoriesClub.Coherence.Schemas
+
   def authenticate(username, password) do
     {:ok, account1()}
   end
@@ -18,6 +20,10 @@ defmodule SevenStoriesClub.Account do
 
   def find_by_name(name) do
     account1()
+  end
+
+  def stats() do
+    %{users: Enum.count(Schemas.list_user), meetings: 0, profiles: 0}
   end
 
   defp account1() do

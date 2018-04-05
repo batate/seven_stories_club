@@ -22,21 +22,18 @@ html lang="en"
           a.navbar-brand href="/" Seven Stories Club
           .collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-right
-              / = if @current_user do
-              /   li.dropdown
-              /     a.dropdown-toggle href="#" data-toggle="dropdown"
-              /       = @current_user.email
-              /       b.caret
-              /       ul.dropdown-menu
-              /         li =link "Dashboard", to: "#"
-              /         li =link "Sign Out", to: session_path(@conn, :delete), method: :delete
-              / - else
-              /   li =link "sign in", to: session_path(@conn, :new)
+               = if @current_user do
+                 li.dropdown
+                   a.dropdown-toggle href="#" data-toggle="dropdown"
+                     = @current_user.email
+                     b.caret
+                     ul.dropdown-menu
+                       li =link "Dashboard", to: "#"
+                       li =link "Sign Out", to: session_path(@conn, :delete), method: :delete
+               - else
+                 li =link "sign in", to: session_path(@conn, :new)
 
     .container
-      .row
-        a href="https://www.github.com/carbonfive/razor" target="_blank"
-          img src="#{static_path(@conn, "/images/razor_logo.jpg")}" class="img-responsive center-block"
       =if info = get_flash(@conn, :info) do
         p.alert.alert-info role="alert"
           = info
