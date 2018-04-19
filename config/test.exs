@@ -12,8 +12,6 @@ config :logger, level: :warn
 # Configure your database
 config :seven_stories_club, SevenStoriesClub.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
   database: "seven_stories_club_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

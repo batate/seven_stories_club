@@ -9,6 +9,7 @@
     "bootstrap-sass": "^3.3.7",
     "jquery": "^3.1.1",
     "less": "^2.7.2",
+    "phantomjs": "^2.1.7",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html"
   },
