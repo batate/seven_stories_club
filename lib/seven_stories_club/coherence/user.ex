@@ -3,11 +3,9 @@ defmodule SevenStoriesClub.Coherence.User do
   use Ecto.Schema
   use Coherence.Schema
 
-  
-
   schema "users" do
-    field :name, :string
-    field :email, :string
+    field(:name, :string)
+    field(:email, :string)
     coherence_schema()
 
     timestamps()
@@ -24,7 +22,10 @@ defmodule SevenStoriesClub.Coherence.User do
 
   def changeset(model, params, :password) do
     model
-    |> cast(params, ~w(password password_confirmation reset_password_token reset_password_sent_at))
+    |> cast(
+      params,
+      ~w(password password_confirmation reset_password_token reset_password_sent_at)
+    )
     |> validate_coherence_password_reset(params)
   end
 end

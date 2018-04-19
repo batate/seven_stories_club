@@ -1,20 +1,17 @@
-defmodule SevenStoriesClub.Meeting do
-  defstruct [:id, :location, :time, :from_profile_id, :to_profile_id, :code]
-  alias __MODULE__
+defmodule SevenStoriesClub.Meeting.Meeting do
+  @moduledoc """
+  Database model for meetings
+  """
 
-  def create(from_profile_id, time, location) do
-    {:ok, meeting1()}
-  end
+  use Ecto.Schema
 
-  def join(code, profile_id) do
-    {:ok, meeting1()}
-  end
+  alias SevenStoriesClub.Profile.Profile
 
-  def add_profile(meeting, profile_id) do
-    {:ok, meeting1()}
-  end
+  schema "meetings" do
+    field(:location, :string)
+    field(:time, :utc_datetime)
+    field(:code, :string)
 
-  defp meeting1() do
-    %{}
+    many_to_many(:profiles, Profile, join_through: "meetings_profiles")
   end
 end
