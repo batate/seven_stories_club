@@ -25,9 +25,13 @@ defmodule SevenStoriesClub.Differences do
   
   def user_attribute_list(user) do
     user
+    |> as_struct
     |> Enum.map( fn( {key, value} ) -> { key, value } end )
     |> Enum.sort
   end
+  
+  def as_struct(%_{}=user), do: Map.from_struct(user)
+  def as_struct(user), do: user
   
   def list_score(list1) do
     list1
