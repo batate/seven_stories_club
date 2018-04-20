@@ -20,8 +20,37 @@ defmodule SevenStoriesClubWeb.DifferencesTest do
     assert Differences.attribute_difference( "NA", "NA" ) == 0
   end
   
-  test "two structs aggregate differences" do
-    # assert Differences.struct_difference( , )
+  test "two profiles compute difference score" do
+    assert Differences.user_difference_score( profile1(), profile2() ) == 2
+    assert Differences.user_difference_score( profile2(), profile3() ) == 0
+  end
+  
+  test "two lists of profiles compute difference score" do
+    assert Differences.list_score( list1() ) == 3
+    assert Differences.list_score( list2() ) == 4
+  end
+  
+  def profile1() do
+    %{ ethnicity: "white", gender: "Male", age: "14to24" }
+  end
+
+  def profile2() do
+    %{ ethnicity: "african american", gender: "Female", age: "14to24" }
+  end
+  
+  def profile3() do
+    %{ ethnicity: "african american", gender: "Female", age: "NA" }
+  end
+  
+  def profile4() do
+    %{ ethnicity: "african american", gender: "Male", age: "50-99" }
+  end
+    
+  def list1() do 
+    [{profile1(), profile2()}, {profile3(), profile4()}]
+  end
+  def list2() do 
+    [{profile1(), profile3()}, {profile2(), profile4()}]
   end
 
 end
