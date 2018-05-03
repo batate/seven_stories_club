@@ -1,6 +1,11 @@
 defmodule SevenStoriesClubWeb.DifferencesTest do
   use ExUnit.Case, async: true
   alias SevenStoriesClub.Differences
+  alias SevenStoriesClub.ListDifferences
+  
+  test "a list of same attributes returns a difference of 1" do
+    assert ListDifferences.attribute_difference(["female", "female", "female"]) == 1
+  end
   
   test "two different attributes return a difference score of 1" do
     assert Differences.attribute_difference( "Male", "Female" ) == 1
