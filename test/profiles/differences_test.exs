@@ -1,5 +1,5 @@
 defmodule SevenStoriesClubWeb.DifferencesTest do
-  use SevenStoriesClubWeb.ConnCase, async: true
+  use ExUnit.Case, async: true
   alias SevenStoriesClub.Differences
   
   test "two different attributes return a difference score of 1" do
