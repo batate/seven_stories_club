@@ -16,4 +16,23 @@ defmodule SevenStoriesClub.ListDifferences do
     |> Enum.map(&(&1[key]))
     |> attribute_difference
   end
+  
+  def difference_score_for_single_list( table_of_users ) do
+    table_of_users
+    |> all_keys
+    |> Enum.map(&difference_score_for_key( table_of_users, &1 ))
+    |> Enum.sum
+  end
+  
+  def list_difference_score(tables) do
+    
+  end
+  
+  def all_keys(users) do
+    users
+    |> Enum.map( &Map.keys/1)
+    |> List.flatten
+    |> Enum.uniq
+  end
+  
 end
