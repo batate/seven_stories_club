@@ -1,20 +1,26 @@
-defmodule SevenStoriesClub.Profile do
-  defstruct [:id, :age, :ethnicity, :gender, :political_party, :account_id, :income, :education_level]
-  alias __MODULE__
+defmodule SevenStoriesClub.Profile.Profile do
+  @moduledoc """
+  The anonymous user profile (which may be de-anonymized by connection to a user
+  profile).
+  """
 
-  def create(attributes) do
-    {:ok, profile1()}
+  use Ecto.Schema
+  import Ecto.Changeset
+  alias SevenStoriesClub.Coherence.User
+
+  schema "profiles" do
+    field(:age, :integer)
+    field(:ethnicity, :string)
+    field(:gender, :string)
+    field(:political_affiliation, :string)
+    field(:education_level, :string)
+
+    belongs_to(:user, User)
   end
 
-  def find(id) do
-    {:ok, profile1()}
-  end
-
-  def update(id, attributes) do
-    {:ok, profile1()}
-  end
-
-  defp profile1() do
-    %Profile{id: 1, age: 27, ethnicity: "Other", gender: "female", political_party: "Democrat", account_id: 1, income: 10000000000000000000, education_level: "Bachelors of Science in Math"}
+  def changeset(profile, params \\ %{}) do
+    profile
+    |> cast(params, [:age, :ethnicity, :gender, :political_affiliation, :education_level])
+    |> validate_inclusion(:age, 1..400)
   end
 end
