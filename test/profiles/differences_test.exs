@@ -4,7 +4,25 @@ defmodule SevenStoriesClubWeb.DifferencesTest do
   alias SevenStoriesClub.ListDifferences
   
   test "a list of same attributes returns a difference of 1" do
-    assert ListDifferences.attribute_difference(["female", "female", "female"]) == 1
+    assert ListDifferences.attribute_difference(["female", "female", "female"]) == 0
+  end
+  
+  test "a list of males and females and an NA should return a difference of 1" do
+    assert ListDifferences.attribute_difference(["male", "male", "female", "NA"]) == 1
+  end
+  
+  test "three users with ages computes attribute difference" do
+    users = [
+      %{age: 40, gender: "male"},
+      %{age: 40, gender: "female"},
+      %{age: 23, gender: "NA"}
+    ]
+    assert ListDifferences.difference_score_for_key(users, :age) == 1
+    assert ListDifferences.difference_score_for_key(users, :gender) == 1
+  end
+
+  test "an empty list returns a difference of 0" do
+    assert ListDifferences.attribute_difference([]) == 0
   end
   
   test "two different attributes return a difference score of 1" do
