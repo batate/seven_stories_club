@@ -34,6 +34,11 @@ defmodule SevenStoriesClubWeb.DifferencesTest do
     assert ListDifferences.attribute_difference([]) == 0
   end
   
+  test "two profile lists compute difference score with list_difference" do
+    assert ListDifferences.list_score( list3() ) == 3
+    assert ListDifferences.list_score( list4() ) == 4
+  end
+
   test "two different attributes return a difference score of 1" do
     assert Differences.attribute_difference( "Male", "Female" ) == 1
     assert Differences.attribute_difference( "Female", "Male" ) == 1
@@ -83,6 +88,12 @@ defmodule SevenStoriesClubWeb.DifferencesTest do
   end
   def list2() do 
     [{profile1(), profile3()}, {profile2(), profile4()}]
+  end
+  def list3() do 
+    [[profile1(), profile2()], [profile3(), profile4()]]
+  end
+  def list4() do 
+    [[profile1(), profile3()], [profile2(), profile4()]]
   end
 
 end

@@ -24,7 +24,7 @@ defmodule SevenStoriesClub.ListDifferences do
     |> Enum.sum
   end
   
-  def list_difference_score(tables) do
+  def list_score(tables) do
     tables
     |> Enum.map(&difference_score_for_single_list/1)
     |> Enum.sum 
