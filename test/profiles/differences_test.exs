@@ -11,23 +11,13 @@ defmodule SevenStoriesClubWeb.DifferencesTest do
     assert ListDifferences.attribute_difference(["male", "male", "female", "NA"]) == 1
   end
   
-  test "three users with ages computes attribute difference" do
-    users = [
-      %{age: 40, gender: "male"},
-      %{age: 40, gender: "female"},
-      %{age: 23, gender: "NA"}
-    ]
-    assert ListDifferences.difference_score_for_key(users, :age) == 1
-    assert ListDifferences.difference_score_for_key(users, :gender) == 1
-  end
-
   test "three users with ages computes attribute difference for single list" do
     users = [
       %{age: 40, gender: "male"},
       %{age: 40, gender: "female"},
       %{age: 23, gender: "NA"}
     ]
-    assert ListDifferences.difference_score_for_single_list(users) == 2
+    assert ListDifferences.table_difference_score(users) == 2
   end
 
   test "an empty list returns a difference of 0" do
